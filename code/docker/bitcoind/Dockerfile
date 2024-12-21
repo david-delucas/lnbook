@@ -1,13 +1,13 @@
 ARG OS=ubuntu
-ARG OS_VER=focal
-FROM ${OS}:${OS_VER} as os-base
+ARG OS_VER=jammy
+FROM ${OS}:${OS_VER} AS os-base
 
 # Install dependencies
 RUN DEBIAN_FRONTEND=noninteractive \
     apt-get update -qq && apt-get install -yqq \
 		curl unzip jq bash-completion
 
-FROM os-base as bitcoind-install
+FROM os-base AS bitcoind-install
 
 ARG BITCOIND_VER=0.21.0
 # Install Bitcoin Core binaries and libraries
